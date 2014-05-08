@@ -264,7 +264,8 @@ define(function () {
         $('#element').attr('data-parsley-priority-enabled', false);
         parsleyInstance.validate();
         expect(window.ParsleyUI.getErrorsMessages(parsleyInstance).length).to.be(2);
-        expect(window.ParsleyUI.getErrorsMessages(parsleyInstance)[0]).to.be('This value is too short. It should have 5 characters or more.');
+        expect(window.ParsleyUI.getErrorsMessages(parsleyInstance)[0]).to.be('This value should be a valid email.');
+        expect(window.ParsleyUI.getErrorsMessages(parsleyInstance)[1]).to.be('This value is too short. It should have 5 characters or more.');
       });
       afterEach(function () {
         if ($('#element').length)

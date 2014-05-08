@@ -164,12 +164,15 @@ define('parsley/field', [
 
       this.constraints = constraints;
 
-      // then re-add Parsley DOM-API constraints
+      // first, bind special HTML5 constraints
+      this._bindHtml5Constraints()
+      
+      // finally re-add Parsley DOM-API constraints, which may override html5 constraints
       for (var name in this.options)
         this.addConstraint(name, this.options[name]);
 
-      // finally, bind special HTML5 constraints
-      return this._bindHtml5Constraints();
+      
+      return this;
     },
 
     // Internal only.

@@ -78,10 +78,15 @@ define(function () {
         // still 4 validators, with max instead of range now
         expect(parsleyField.actualizeOptions().constraints.length).to.be(4);
       });
-      it('should properly bind special HTML5 `number` type', function () {
+      it('should properly bind HTML5 `number` type', function () {
         $('body').append('<input type="number" id="element" />');
         var parsleyField = new Parsley($('#element'));
         expect(parsleyField.constraints[0].requirements).to.be('number');
+      });
+      it('should not bind HTML5 `number` type, if overriden by data-parsley-type', function () {
+        $('body').append('<input type="number" id="element" data-parsley-type="digits" />');
+        var parsleyField = new Parsley($('#element'));
+        expect(parsleyField.constraints[0].requirements).to.be('digits');
       });
       it('should valid simple validator', function () {
         $('body').append('<input type="text" id="element" value="" />');
