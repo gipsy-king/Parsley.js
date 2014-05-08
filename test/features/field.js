@@ -88,6 +88,13 @@ define(function () {
         var parsleyField = new Parsley($('#element'));
         expect(parsleyField.constraints[0].requirements).to.be('digits');
       });
+      it('should work around HTML5 `number` type not returning a value when invalid', function () {
+        $('body').append('<input type="number" id="element" value="not a number" />'); // note that "required" is not set
+        var parsleyField = new Parsley($('#element'));
+        expect(parsleyField.isValid()).to.be(false);
+        $('#element').val('14');
+        expect(parsleyField.isValid()).to.be(true);
+      });
       it('should valid simple validator', function () {
         $('body').append('<input type="text" id="element" value="" />');
         var parsleyField = new Parsley($('#element'))

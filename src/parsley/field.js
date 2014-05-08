@@ -85,10 +85,20 @@ define('parsley/field', [
       var value;
 
       // Value could be overriden in DOM
-      if ('undefined' !== typeof this.options.value)
+      if ('undefined' !== typeof this.options.value) {
         value = this.options.value;
-      else
-        value = this.$element.val();
+
+      } else {
+        // type="number" returns empty string if entered text is not a valid number (by UA validation)
+        if ('number' === this.$element.attr('type')) {
+          this.$element.attr('type', 'text');
+          value = this.$element.val();
+          this.$element.attr('type', 'number');
+
+        } else {
+          value = this.$element.val();
+        }
+      }
 
       // Handle wrong DOM or configurations
       if ('undefined' === typeof value || null === value)
