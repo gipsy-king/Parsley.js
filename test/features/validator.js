@@ -101,6 +101,11 @@ define(function () {
         expect(parsleyValidator.validate('https://www.foo.bar', parsleyValidator.validators.type('url'))).to.be(true);
         expect(parsleyValidator.validate('https://www.foobarbaz.barbazbar.bazbar', parsleyValidator.validators.type('url'))).not.to.be(true);
       });
+      it('should have a type="any" validator', function () {
+        expect(parsleyValidator.validate('foo', parsleyValidator.validators.type('any'))).to.be(true);
+        expect(parsleyValidator.validate('1', parsleyValidator.validators.type('any'))).to.be(true);
+        expect(parsleyValidator.validate('', parsleyValidator.validators.type('any'))).to.be(true);
+      });
       it('should have a pattern validator', function () {
         expect(parsleyValidator.validate('a', parsleyValidator.validators.pattern('[a-z]+'))).to.be(true);
         expect(parsleyValidator.validate('A', parsleyValidator.validators.pattern('[a-z]+'))).not.to.be(true);

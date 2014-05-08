@@ -96,6 +96,15 @@ define(function () {
         $('#element').val('foo');
         expect(parsleyField.isValid()).to.be(true);
       });
+      it('should valid any value with the "any" validator', function () {
+        $('body').append('<input type="email" data-parsley-type="any" required id="element" value="" />');
+        var parsleyField = new Parsley($('#element'));
+        expect(parsleyField.isValid()).to.be(false);
+        $('#element').val('foo');
+        expect(parsleyField.isValid()).not.to.be(false);
+        $('#element').val('42');
+        expect(parsleyField.isValid()).not.to.be(false);
+      });
       it('should valid more complex `type` validator', function () {
         $('body').append('<input type="text" id="element" value="foo" />');
         var parsleyField = new Parsley($('#element'))

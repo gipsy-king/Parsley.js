@@ -131,6 +131,9 @@ define('parsley/validator', [
           case 'url':
             assert = new Validator.Assert().Regexp('(https?:\\/\\/)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)', 'i');
             break;
+          case 'any':
+            assert = new Validator.Assert().Regexp('.*');
+            break;
           default:
             throw new Error('validator type `' + type + '` is not supported');
         }
