@@ -81,7 +81,7 @@ define(function () {
       it('should properly bind special HTML5 `number` type', function () {
         $('body').append('<input type="number" id="element" />');
         var parsleyField = new Parsley($('#element'));
-        expect(parsleyField.constraints[0].requirements).to.be('integer');
+        expect(parsleyField.constraints[0].requirements).to.be('number');
       });
       it('should valid simple validator', function () {
         $('body').append('<input type="text" id="element" value="" />');
